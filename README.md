@@ -23,9 +23,6 @@
 - [Cách hoạt động của Memory](#cách-hoạt-động-của-memory)
 - [Quy trình xử lý của Agent (System Prompt)](#quy-trình-xử-lý-của-agent-system-prompt)
 - [Ví dụ sử dụng](#ví-dụ-sử-dụng)
-- [Lưu ý & TODO trước khi deploy](#lưu-ý--todo-trước-khi-deploy)
-- [Đóng góp](#đóng-góp)
-- [License](#license)
 
 ---
 
