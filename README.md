@@ -239,26 +239,3 @@ lại là bạn ưu tiên họp buổi sáng nhé.
 
 ---
 
-## Lưu ý & TODO trước khi deploy
-
-Một số điểm nên xử lý trước khi public/production:
-
-- [ ] **Bảo mật**: chuyển `DB_URI` (đang hardcode password trong `memory.py`) sang đọc từ biến môi trường `.env`, và thêm `.env` vào `.gitignore`.
-- [ ] **Xác minh tên model**: `"gemini-3.5-flash"` trong `index.py` không khớp với tên model chính thức hiện có của Google (thường là dạng `gemini-x.x-flash`/`-pro` theo phiên bản đang phát hành) — kiểm tra lại tên model hợp lệ trước khi chạy, tránh lỗi runtime.
-- [ ] **Thêm `requirements.txt`**: repo hiện chưa liệt kê dependencies, nên "freeze" lại để người khác cài đặt nhất quán.
-- [ ] **Checkpointer persistent**: cân nhắc thay `InMemorySaver` bằng `PostgresSaver` nếu muốn giữ lịch sử hội thoại qua nhiều lần chạy chương trình.
-- [ ] **Đặt lại tên hàm/tool**: `add_infomation`, `get_infomation`, `update_infomation` đang bị lỗi chính tả ("infomation" → "information") — nên sửa cho chuyên nghiệp, đặc biệt nếu expose ra ngoài như một API/tool công khai.
-- [ ] **Xử lý lỗi output**: dòng `result["messages"][-1].content[0]['text']` trong `index.py` giả định cấu trúc response cố định — nên thêm try/except để tránh crash khi model trả về định dạng khác (ví dụ chỉ có tool_call, không có text).
-- [ ] **`.gitignore`**: nhớ loại trừ `venv/`, `.env`, `__pycache__/`, và các file credential OAuth mà MCP server Gmail/Calendar sinh ra khi autoauth.
-
----
-
-## Đóng góp
-
-Pull request/issue đều được hoan nghênh. Nếu muốn mở rộng thêm MCP server khác (Notion, Slack, Todoist...), chỉ cần thêm cấu hình vào `mcp_client` trong `tool.py` và cập nhật `system_prompt` cho phù hợp.
-
----
-
-## License
-
-MIT License — tự do sử dụng, chỉnh sửa, phân phối. Thêm file `LICENSE` vào repo nếu muốn công bố chính thức.
